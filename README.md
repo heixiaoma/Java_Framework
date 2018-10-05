@@ -1,37 +1,19 @@
 # 黑小马通用开发框架
 
 #### 项目介绍
-使用spring+springmvc+mybatis+shiro+layui等框架编写的通用管理快熟开发后台
+    本项目是一个开源免费的快速开发框架，本着自己平时接单时总做一些无用功，重复造轮子，
+    所以特此写了这段代码，本程序有一下功能！
+   1. 用户管理
+   2. 菜单管理
+   3. Aop管理
+   4. 权限管理
 
 #### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
+使用spring+springmvc+mybatis+shiro+layui等框架编写的通用管理快熟开发后台
 
 #### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
+    只需要在菜单管理里面添加自己的模块，填写好控制器的路径和名字即可，其他事情全部由框架自动完成
+    
 
 #### 参与贡献
-
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+    黑小马-2018-10.5开始发布，目前还在更新中
