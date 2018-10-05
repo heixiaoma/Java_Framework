@@ -24,14 +24,15 @@ public class IndexServiceImp implements IndexService {
     private SysUserMapper sysUserMapper;
     @Autowired
     private SysMenuMapper sysMenuMapper;
+
     @Override
     public SysUser login(SysUser user) {
         //或者调用自定义的Mapper.xml文件的方案
-         SysUser sysUser = sysUserMapper.login(user);
-        if(sysUser!=null){
-            sysUtil.getHttpSession().setAttribute(Const.SESSION,sysUser);
+        SysUser sysUser = sysUserMapper.login(user);
+        if (sysUser != null) {
+            sysUtil.getHttpSession().setAttribute(Const.SESSION, sysUser);
             return sysUser;
-        }else{
+        } else {
             sysUtil.getHttpSession().removeAttribute(Const.SESSION);
             return user;
         }
@@ -42,21 +43,21 @@ public class IndexServiceImp implements IndexService {
         return showMenu(sysMenuMapper.selectAll());
     }
 
-    private String showMenu(List<SysMenu> menus){
+    private String showMenu(List<SysMenu> menus) {
 
-        List<Menu> temp1=new ArrayList<>();
-        List<Menu> temp2=new ArrayList<>();
+        List<Menu> temp1 = new ArrayList<>();
+        List<Menu> temp2 = new ArrayList<>();
         //一二级菜单分离
-        for (SysMenu s:menus) {
-            Menu menu=new Menu();
-            if(s.getPid()==0){
+        for (SysMenu s : menus) {
+            Menu menu = new Menu();
+            if (s.getPid() == 0) {
                 menu.setId(s.getId());
                 menu.setTitle(s.getName());
                 menu.setHref(s.getHref());
                 menu.setIcon(s.getIcon());
                 menu.setPid(s.getPid());
                 temp1.add(menu);
-            }else {
+            } else {
                 menu.setId(s.getId());
                 menu.setTitle(s.getName());
                 menu.setPid(s.getPid());
@@ -66,14 +67,14 @@ public class IndexServiceImp implements IndexService {
             }
         }
         //总菜单处理
-        for (Menu sm2:temp2){
-            for (Menu sm1:temp1){
-                if(sm2.getPid()==sm1.getId()){
+        for (Menu sm2 : temp2) {
+            for (Menu sm1 : temp1) {
+                if (sm2.getPid() == sm1.getId()) {
                     sm1.addChildren(sm2);
                 }
             }
         }
-        Gson gson=new Gson();
+        Gson gson = new Gson();
         String s = gson.toJson(temp1);
         return s;
 

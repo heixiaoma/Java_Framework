@@ -23,6 +23,7 @@ public class SysLogServiceImp implements SysLogService {
 
     /**
      * 日志添加
+     *
      * @param sysLog
      * @return
      */
@@ -30,9 +31,9 @@ public class SysLogServiceImp implements SysLogService {
     public boolean addLog(SysLog sysLog) {
 
         int insert = sysLogMapper.insert(sysLog);
-        if(insert!=0){
+        if (insert != 0) {
             return true;
-        }else {
+        } else {
             return false;
         }
 
@@ -41,11 +42,11 @@ public class SysLogServiceImp implements SysLogService {
     @Test
     @Override
     public PageInfo getPage(Integer pages) {
-        if(pages==null||pages<=0){
-            pages=1;
+        if (pages == null || pages <= 0) {
+            pages = 1;
         }
         PageHelper.startPage(pages, 10);
-        Condition condition=new Condition(SysLog.class);
+        Condition condition = new Condition(SysLog.class);
         condition.setOrderByClause("id desc");
         List<SysLog> sysLogs = sysLogMapper.selectByExample(condition);
         PageInfo page = new PageInfo(sysLogs);
@@ -59,8 +60,8 @@ public class SysLogServiceImp implements SysLogService {
 
     @Override
     public void del(int id) {
-        Condition condition=new Condition(SysLog.class);
-        condition.createCriteria().andCondition("id="+id);
+        Condition condition = new Condition(SysLog.class);
+        condition.createCriteria().andCondition("id=" + id);
         sysLogMapper.deleteByExample(condition);
 
     }

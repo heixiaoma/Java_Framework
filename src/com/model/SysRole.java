@@ -1,7 +1,10 @@
 package com.model;
 
+import javax.persistence.Column;
+
 public class SysRole {
     private int id;
+    @Column(name="roleName")
     private String roleName;
 
     public int getId() {

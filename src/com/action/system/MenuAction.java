@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/system")
 public class MenuAction {
 
-    private static final Logger logger=Logger.getLogger(MenuAction.class);
+    private static final Logger logger = Logger.getLogger(MenuAction.class);
 
     @Autowired
     private MenuService menuService;
@@ -29,14 +29,15 @@ public class MenuAction {
      */
     @RequestMapping(value = "/menu")
     public String menu(ModelMap map) {
-        map.addAttribute("menus",menuService.getMenu());
-        map.addAttribute("menu",menuService.showMenu());
+        map.addAttribute("menus", menuService.getMenu());
+        map.addAttribute("menu", menuService.showMenu());
         return "system/menu";
     }
 
 
     /**
      * 添加菜单
+     *
      * @param menu
      * @return
      */
@@ -45,21 +46,23 @@ public class MenuAction {
     public String addMenu(Menu menu) {
         boolean b = menuService.addMenu(menu);
         logger.debug(b);
-        return b+"";
+        return b + "";
     }
 
     /**
      * 显示菜单
+     *
      * @return
      */
     @RequestMapping(value = "/add")
     public String add(ModelMap map) {
-        map.addAttribute("menus",menuService.getMenu());
+        map.addAttribute("menus", menuService.getMenu());
         return "/system/addMenu";
     }
 
     /**
      * 更具菜单id删除
+     *
      * @param id
      * @return
      */

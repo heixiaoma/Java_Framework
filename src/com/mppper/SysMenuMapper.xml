@@ -27,16 +27,16 @@
 	</sql>
 
 
-	<!-- 一级菜单 -->
-	<sql id="Field3">
+    <!-- 一级菜单 -->
+    <sql id="Field3">
 		name,
 		href,
 		icon
 	</sql>
 
 
-	<!-- 二级菜单 -->
-	<sql id="Field4">
+    <!-- 二级菜单 -->
+    <sql id="Field4">
 		name,
 		href,
 		icon,
@@ -44,15 +44,15 @@
 	</sql>
 
 
-	<!-- 字段值 -->
-	<sql id="FieldValue1">
+    <!-- 字段值 -->
+    <sql id="FieldValue1">
 		#{name},
 		#{href},
 		#{icon}
 	</sql>
 
-	<!-- 字段值 -->
-	<sql id="FieldValue2">
+    <!-- 字段值 -->
+    <sql id="FieldValue2">
 		#{name},
 		#{href},
 		#{icon},
@@ -71,33 +71,33 @@
 
     <!-- 添加一级菜单 -->
     <insert id="addMenu1" parameterType="com.model.SysMenu">
-		insert
+        insert
 
-		<include refid="tableName"></include>
-		(
-		<include refid="Field3"></include>
-		) values (
-		<include refid="FieldValue1"></include>
-		)
+        <include refid="tableName"></include>
+        (
+        <include refid="Field3"></include>
+        ) values (
+        <include refid="FieldValue1"></include>
+        )
     </insert>
 
-	<!-- 添加二级菜单 -->
-	<insert id="addMenu2" parameterType="com.model.SysMenu">
-		insert
-		<include refid="tableName"></include>
-		(
-		<include refid="Field4"></include>
-		) values (
-		<include refid="FieldValue2"></include>
-		)
-	</insert>
+    <!-- 添加二级菜单 -->
+    <insert id="addMenu2" parameterType="com.model.SysMenu">
+        insert
+        <include refid="tableName"></include>
+        (
+        <include refid="Field4"></include>
+        ) values (
+        <include refid="FieldValue2"></include>
+        )
+    </insert>
 
     <!--通过id删除菜单-->
-	<delete id="del" parameterType="string">
-		delete from
-		<include refid="tableName"></include>
-		where
-		id = #{id}
-	</delete>
+    <delete id="del" parameterType="string">
+        delete from
+        <include refid="tableName"></include>
+        where
+        id = #{id}
+    </delete>
 
 </mapper>

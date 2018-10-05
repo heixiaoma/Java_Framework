@@ -28,13 +28,14 @@ public class UserManageServiceImp implements UserManageService {
 
     /**
      * 查询所有用户并做分页
+     *
      * @param pages
      * @return
      */
     @Override
     public PageInfo getAllUsers(Integer pages) {
-        if(pages==null||pages<=0){
-            pages=1;
+        if (pages == null || pages <= 0) {
+            pages = 1;
         }
         PageHelper.startPage(pages, 10);
         List<SysUser> sysUsers = sysUserManageMapper.getAllUsers();
@@ -44,6 +45,7 @@ public class UserManageServiceImp implements UserManageService {
 
     /**
      * 获取所有的用户组，由于用户组往往不会很多所以就没有做分页了
+     *
      * @return
      */
     @Override

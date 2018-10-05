@@ -23,8 +23,8 @@ public class AopAction {
      * @return
      */
     @RequestMapping(value = "/aop")
-    public String aopList(ModelMap modelMap,Integer page) {
-        modelMap.addAttribute("logs",sysLogService.getPage(page));
+    public String aopList(ModelMap modelMap, Integer page) {
+        modelMap.addAttribute("logs", sysLogService.getPage(page));
         return "system/aop";
     }
 
@@ -34,12 +34,11 @@ public class AopAction {
      * @return
      */
     @RequestMapping(value = "/aopdel")
-    public String aopdel(ModelMap modelMap,Integer page,Integer id) {
+    public String aopdel(ModelMap modelMap, Integer page, Integer id) {
         sysLogService.del(id);
-        modelMap.addAttribute("logs",sysLogService.getPage(page));
+        modelMap.addAttribute("logs", sysLogService.getPage(page));
         return "system/aop";
     }
-
 
 
 }

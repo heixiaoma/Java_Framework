@@ -26,10 +26,10 @@ public class LoginLog {
     @Autowired
     private SysLogService sysLogService;
 
-    private static Logger logger=Logger.getLogger(LoginLog.class);
+    private static Logger logger = Logger.getLogger(LoginLog.class);
 
     /**
-     *切入点注解
+     * 切入点注解
      */
     @Pointcut("execution(* com.service.system.IndexService.login(..))")
     public void cut() {
@@ -37,23 +37,24 @@ public class LoginLog {
 
     /**
      * 目标类方法执行后执行该方法
+     *
      * @param joinPoint
      * @param object
      */
-    @AfterReturning(value = "cut()",argNames = "joinPoint,object", returning = "object")
+    @AfterReturning(value = "cut()", argNames = "joinPoint,object", returning = "object")
     public void after(JoinPoint joinPoint, Object object) {
-        logger.debug("aop 被执行 方法名："+joinPoint.toLongString());
-        SysUser sysUser=(SysUser)object;
-        SysLog sysLog=new SysLog();
+        logger.debug("aop 被执行 方法名：" + joinPoint.toLongString());
+        SysUser sysUser = (SysUser) object;
+        SysLog sysLog = new SysLog();
         sysLog.setIp(sysUtil.getIpAddr());
         sysLog.setTime(sysUtil.getNowTime());
-        if (sysUtil.getHttpSession().getAttribute(Const.SESSION)!=null){
-            sysLog.setContent("账号："+sysUser.getUsername()+"登录成功");
-        }else{
-            sysLog.setContent("账号："+sysUser.getUsername()+"登录失败");
+        if (sysUtil.getHttpSession().getAttribute(Const.SESSION) != null) {
+            sysLog.setContent("账号：" + sysUser.getUsername() + "登录成功");
+        } else {
+            sysLog.setContent("账号：" + sysUser.getUsername() + "登录失败");
         }
         boolean b = sysLogService.addLog(sysLog);
-        logger.debug("注入结果："+b);
+        logger.debug("注入结果：" + b);
     }
 
 }

@@ -7,7 +7,7 @@ public class SysUser {
     private String name;
     private String username;
     private String password;
-//    不是必要字段请加上这个注解，以免tk报错
+    //    不是必要字段请加上这个注解，以免tk报错
     @Transient
     private SysRole sysRole;
 
@@ -50,7 +50,6 @@ public class SysUser {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
     @Override

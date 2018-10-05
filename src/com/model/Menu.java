@@ -9,7 +9,7 @@ public class Menu {
     private int pid;
     private String icon;
     private String href;
-    private List<Menu> children=new ArrayList<>();
+    private List<Menu> children = new ArrayList<>();
 
     public String getIcon() {
         return icon;

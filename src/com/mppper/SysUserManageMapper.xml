@@ -3,23 +3,21 @@
 
 <mapper namespace="com.dao.system.SysUserManageMapper">
 
-	<resultMap type="com.model.SysUser" id="userMap">
-		<result column="id" property="id"/>
-		<result column="name" property="name"/>
-		<result column="username" property="username"/>
-		<result column="password" property="password"/>
-		<association  property="sysRole" javaType="com.model.SysRole">
-			<id column="id" property="id"/>
-			<!-- 用户组名 -->
-			<result column="roleName" property="roleName"/>
-		</association >
-	</resultMap>
+    <resultMap type="com.model.SysUser" id="userMap">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <association property="sysRole" javaType="com.model.SysRole">
+            <id column="id" property="id"/>
+            <!-- 用户组名 -->
+            <result column="roleName" property="roleName"/>
+        </association>
+    </resultMap>
 
 
-
-
-	<!-- 登录 -->
-	<select id="login" parameterType="com.model.SysUser" resultMap="userMap">
+    <!-- 登录 -->
+    <select id="login" parameterType="com.model.SysUser" resultMap="userMap">
 		select
 		f.*
 		from
@@ -28,7 +26,7 @@
 
 	</select>
 
-	<select id="getAllUsers" parameterType="com.model.SysUser" resultMap="userMap" >
+    <select id="getAllUsers" parameterType="com.model.SysUser" resultMap="userMap">
 		select
 			f.id,
 			f.name,
@@ -39,7 +37,6 @@
 		from sys_user f,sys_role s where f.id=s.id
 
 	</select>
-
 
 
 </mapper>

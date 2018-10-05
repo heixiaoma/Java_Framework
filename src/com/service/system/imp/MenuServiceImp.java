@@ -19,9 +19,9 @@ public class MenuServiceImp implements MenuService {
     @Override
     public List<Menu> getMenu() {
 
-        List<Menu> temp=new ArrayList<>();
+        List<Menu> temp = new ArrayList<>();
         //一二级菜单分离
-        for (SysMenu s:sysMenuMapper.selectAll()) {
+        for (SysMenu s : sysMenuMapper.selectAll()) {
             Menu menu = new Menu();
             if (s.getPid() == 0) {
                 menu.setId(s.getId());
@@ -34,14 +34,14 @@ public class MenuServiceImp implements MenuService {
 
     @Override
     public boolean addMenu(Menu menu) {
-        SysMenu sysMenu=new SysMenu();
+        SysMenu sysMenu = new SysMenu();
         sysMenu.setName(menu.getTitle());
         sysMenu.setHref(menu.getHref());
         sysMenu.setIcon("&#xe672;");
-        if(menu.getId()!=0){
+        if (menu.getId() != 0) {
             sysMenu.setPid(menu.getId());
             sysMenuMapper.addMenu2(sysMenu);
-        }else {
+        } else {
             sysMenuMapper.addMenu1(sysMenu);
         }
 

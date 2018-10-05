@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface UserManageService {
     PageInfo getAllUsers(Integer page);
+
     List<SysRole> getAllSysRoles();
 }

@@ -23,23 +23,25 @@ public class UserManageAction {
 
     /**
      * 默认页面
+     *
      * @return
      */
     @RequestMapping("/user")
-    public String user(ModelMap map,Integer page){
+    public String user(ModelMap map, Integer page) {
         PageInfo allUsers = userManageService.getAllUsers(page);
-        map.addAttribute("AllUsers",allUsers);
+        map.addAttribute("AllUsers", allUsers);
         return "system/user";
     }
 
 
     /**
      * 管理用户组
+     *
      * @return
      */
     @RequestMapping("/manageRole")
-    public String addRole(ModelMap map){
-        map.addAttribute("Roles",userManageService.getAllSysRoles());
+    public String addRole(ModelMap map) {
+        map.addAttribute("Roles", userManageService.getAllSysRoles());
         return "system/manageRole";
     }
 

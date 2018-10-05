@@ -8,7 +8,10 @@ import java.util.List;
 public interface MenuService {
 
     List<Menu> getMenu();
+
     boolean addMenu(Menu menu);
+
     List<SysMenu> showMenu();
+
     void del(String id);
 }
