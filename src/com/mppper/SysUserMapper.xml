@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.system.SysUserMapper">
+
+	<resultMap type="com.model.SysUser" id="userMap">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<association  property="sysRole" javaType="com.model.SysRole">
+			<id column="id" property="id"/>
+			<!-- 用户组名 -->
+			<result column="roleName" property="roleName"/>
+		</association >
+	</resultMap>
+
+	<!--表名 -->
+	<sql id="tableName">
+		Sys_User
+	</sql>
+
+	<!-- 字段 -->
+	<sql id="Field">
+		f.id,
+		f.name,
+		f.username,
+		f.password
+	</sql>
+	
+	<!-- 字段用于新增 -->
+	<sql id="Field2">
+		id,
+		name,
+		username,
+		password
+	</sql>
+	
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{id},
+		#{name},
+		#{username},
+		#{password}
+	</sql>
+
+
+	<!-- 登录 -->
+	<select id="login" parameterType="com.model.SysUser" resultMap="userMap">
+		select
+		f.*
+		from
+		<include refid="tableName"></include> f
+		where f.username=#{username} and f.password=#{password}
+
+	</select>
+
+
+
+
+</mapper>
