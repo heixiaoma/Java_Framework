@@ -50,9 +50,55 @@
                     layui.layer.full(index);
                 });
                 layui.layer.full(index);
-            })
+            });
+
+            $(".editUser").click(function () {
+
+                var nodes=this.parentNode.parentNode.childNodes;
+                for (var i = 0; i <8; i++) {
+                    $("#userid").val(nodes[1].getAttribute("data"));
+                    if(nodes[i].innerText){
+                        switch (i){
+                            case 1:
+                                $("#name").val(nodes[i].innerText);
+                                //$("#userid").val(nodes[i].getAttribute("data"));
+                                break;
+                            case 3:
+                                $("#username").val(nodes[i].innerText);
+                                break;
+                            case 5:
+                                $("#password").val(nodes[i].innerText);
+                                break;
+                            case 7:
+                                $("#role").text(nodes[i].innerText);
+                                $("#role").val(nodes[i].getAttribute("data"));
+                                break;
+
+                        }
+                    }
+
+                }
+
+                layer.open({
+                    title:"编辑用户",
+                    type: 1,
+                    content: $('#edit')
+                });
+            });
 
 
+            $(".addUser").click(function () {
+                $("#name").val("");
+                $("#userid").val(0);
+                $("#username").val("");
+                $("#password").val("");
+
+                layer.open({
+                    title:"添加用户",
+                    type: 1,
+                    content: $('#edit')
+                });
+            });
 
         });
 
@@ -88,15 +134,15 @@
 
             <c:forEach var="user" items="${AllUsers.list}">
                 <tr>
-                    <td>${user.name}</td>
+                    <td data="${user.id}">${user.name}</td>
                     <td>${user.username}</td>
                     <td>${user.password}</td>
-                    <td>${user.sysRole.roleName}</td>
+                    <td data="${user.sysRole.roleid}">${user.sysRole.roleName}</td>
                     <td>
 
-                        <a   href="/system/${user.id}" class="layui-btn layui-btn-success layui-btn-mini news_edit" data-id="2"><i
+                        <a href="#${user.id}"  class="layui-btn layui-btn-success layui-btn-mini news_edit editUser" data-id="2"><i
                                 class="iconfont icon-edit"></i>编辑</a>
-                        <a   href="/system/${user.id}" class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="2"><i
+                        <a   href="/system/delUser?id=${user.id}&page=${AllUsers.pageNum}" class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="2"><i
                             class="layui-icon"></i>删除</a>
 
                     </td>
@@ -111,5 +157,55 @@
 </div>
 
 </body>
+
+
+<!-- 需要弹出的添加界面 -->
+<div class="layui-row" id="edit" style="display: none;">
+
+    <form method="post" action="/system/editUser?page=${AllUsers.pageNum}">
+        <input type="hidden" name="id" id="userid">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">名字</label>
+            <div class="layui-input-inline">
+                <input type="tel" id="name" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline">
+                <input type="tel" id="username" name="username" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="tel" id="password" name="password" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户组</label>
+        <div class="layui-input-inline">
+            <select name="roleid"  class="layui-input" lay-filter="aihao">
+                <option value="1" id="role" selected=""></option>
+                <c:forEach var="role" items="${Roles}">
+                    <option value="${role.roleid}" > ${role.roleName}</option>
+                </c:forEach>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+        </div>
+    </div>
+    </form>
+
+</div>
+
 
 </html>

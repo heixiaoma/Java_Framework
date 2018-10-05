@@ -1068,9 +1068,9 @@ name</ColNames>
       <ColNames>roleId</ColNames>
       <RefSchemaName>hxm</RefSchemaName>
       <RefTableName>sys_role</RefTableName>
-      <RefColNames>id</RefColNames>
+      <RefColNames>roleid</RefColNames>
     </foreign-key>
-    <column id="263" parent="242" name="id">
+    <column id="263" parent="242" name="roleid">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1084,7 +1084,7 @@ name</ColNames>
     </column>
     <key id="265" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>roleid</ColNames>
       <Primary>1</Primary>
     </key>
     <column id="266" parent="243" name="id">
@@ -1123,7 +1123,7 @@ name</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="271" parent="243" name="roleid">
+    <index id="271" parent="243" name="sys_user_ibfk_1">
       <ColNames>roleid</ColNames>
       <Type>btree</Type>
     </index>
@@ -1136,7 +1136,8 @@ name</ColNames>
       <ColNames>roleid</ColNames>
       <RefSchemaName>hxm</RefSchemaName>
       <RefTableName>sys_role</RefTableName>
-      <RefColNames>id</RefColNames>
+      <RefColNames>roleid</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
   </database-model>
 </dataSource>

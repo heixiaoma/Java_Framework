@@ -9,34 +9,58 @@
         <result column="username" property="username"/>
         <result column="password" property="password"/>
         <association property="sysRole" javaType="com.model.SysRole">
-            <id column="id" property="id"/>
+            <id column="roleid" property="roleid"/>
             <!-- 用户组名 -->
             <result column="roleName" property="roleName"/>
         </association>
     </resultMap>
 
 
-    <!-- 登录 -->
-    <select id="login" parameterType="com.model.SysUser" resultMap="userMap">
-		select
-		f.*
-		from
-		sys_user f
-		where f.username=#{username} and f.password=#{password}
 
-	</select>
 
+	<!--查询所有-->
     <select id="getAllUsers" parameterType="com.model.SysUser" resultMap="userMap">
 		select
 			f.id,
 			f.name,
 			f.username,
 			f.password,
-			s.id,
+			s.roleid,
 			s.roleName
-		from sys_user f,sys_role s where f.id=s.id
+		from sys_user f,sys_role s where f.roleid=s.roleid
 
 	</select>
 
+	<!--插入用户-->
+
+	<update id="saveSysUser" parameterType="com.model.SysUser">
+		INSERT INTO sys_user  (name,username,password,roleid) VALUES(#{name},#{username},#{password},#{roleid} )
+
+	</update>
+
+	<!-- 编辑用户 -->
+	<update id="updateSysUser" parameterType="com.model.SysUser">
+		UPDATE sys_user SET
+		 `name`=#{name} ,
+		 username=#{username},
+		 `password`=#{password},
+		 roleid=#{roleid}
+		  WHERE id=#{id}
+	</update>
+
+
+	<!--插入用户组-->
+
+	<update id="saveSysRole" parameterType="com.model.SysRole">
+		INSERT INTO sys_role  (roleName) VALUES(#{roleName})
+
+	</update>
+
+	<!-- 编辑用户组 -->
+	<update id="updateSysRole" parameterType="com.model.SysRole">
+		UPDATE sys_role SET
+		 roleName=#{roleName}
+		  WHERE roleid=#{roleid}
+	</update>
 
 </mapper>

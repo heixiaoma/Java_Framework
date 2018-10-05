@@ -1,5 +1,6 @@
 package com.model;
 
+import javax.persistence.Column;
 import javax.persistence.Transient;
 
 public class SysUser {
@@ -10,6 +11,18 @@ public class SysUser {
     //    不是必要字段请加上这个注解，以免tk报错
     @Transient
     private SysRole sysRole;
+
+    @Transient
+    @Column(name="roleid")
+    private int roleid;
+
+    public int getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
+    }
 
     public SysRole getSysRole() {
         return sysRole;

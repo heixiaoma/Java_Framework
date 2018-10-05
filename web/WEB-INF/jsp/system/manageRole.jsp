@@ -21,11 +21,35 @@
     <script>
         layui.use(['form', 'layedit', 'laydate', 'element'], function () {
 
-            var form = layui.form();
-            form.on('submit(addm)', function(){
-                //提交后关闭自己
-                var index=parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+            $(".news_edit").click(function () {
+                var nodes=this.parentNode.parentNode.childNodes;
+                console.log(nodes)
+                for (var i = 0; i <nodes.length; i++) {
+                    if(nodes[i].innerText){
+                        $("#roleName").val(nodes[i].innerText);
+                        $("#roleid").val(nodes[i].getAttribute("data"));
+                        break;
+                        }
+                    }
+
+                layer.open({
+                    title:"编辑用户组",
+                    type: 1,
+                    content: $('#edit')
+                });
+
+            });
+
+
+            $(".addRole").click(function () {
+                $("#roleName").val("");
+                $("#roleid").val(0);
+
+                layer.open({
+                    title:"添加用户组",
+                    type: 1,
+                    content: $('#edit')
+                });
             });
 
         });
@@ -47,11 +71,11 @@
 
                 <c:forEach var="role" items="${Roles}">
                     <tr>
-                        <td>${role.roleName}</td>
+                        <td data="${role.roleid}">${role.roleName}</td>
                         <td>
-                            <a   href="/system/${role.id}" class="layui-btn layui-btn-success layui-btn-mini news_edit" data-id="2"><i
+                            <a   href="#" class="layui-btn layui-btn-success layui-btn-mini news_edit" data-id="2"><i
                                     class="iconfont icon-edit"></i>编辑</a>
-                            <a   href="/system/${role.id}" class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="2"><i
+                            <a   href="/system/delRole?id=${role.roleid}" class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="2"><i
                                     class="layui-icon"></i>删除</a>
                         </td>
                     </tr>
@@ -64,4 +88,29 @@
 
 
 </body>
+
+
+<!-- 需要弹出的添加界面 -->
+<div class="layui-row" id="edit" style="display: none;">
+
+    <form method="post" action="/system/editRole">
+        <input type="hidden" name="roleid" id="roleid">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">添加用户组</label>
+                <div class="layui-input-inline">
+                    <input type="tel" id="roleName" name="roleName" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
 </html>

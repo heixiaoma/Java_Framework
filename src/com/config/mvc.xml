@@ -42,7 +42,7 @@
         <property name="dataSource" ref="dataSource" />
         <!--插件配置，主要用分页-->
         <!--xml方式配置-->
-        <!--<property name="configLocation" value="classpath:com/config/mybatis_config.xml" />-->
+        <property name="configLocation" value="classpath:com/config/mybatis_config.xml" />
         <!--直接配置-->
         <property name="plugins">
             <array>

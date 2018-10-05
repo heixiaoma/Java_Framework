@@ -3,16 +3,17 @@ package com.model;
 import javax.persistence.Column;
 
 public class SysRole {
-    private int id;
+    @Column(name = "roleid")
+    private int roleid;
     @Column(name="roleName")
     private String roleName;
 
-    public int getId() {
-        return id;
+    public int getRoleid() {
+        return roleid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRoleid(int roleid) {
+        this.roleid = roleid;
     }
 
     public String getRoleName() {
