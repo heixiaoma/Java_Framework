@@ -9,7 +9,7 @@
    4. 权限管理
 
 #### 软件架构
-使用spring+springmvc+mybatis+shiro+layui等框架编写的通用管理快熟开发后台
+    使用spring+springmvc+mybatis+shiro+layui等框架编写的通用管理快熟开发后台
 
 #### 使用说明
     只需要在菜单管理里面添加自己的模块，填写好控制器的路径和名字即可，其他事情全部由框架自动完成
